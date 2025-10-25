@@ -3,7 +3,6 @@ include 'koneksi.php';
 
 if (isset($_POST['submit'])) {
 
-    // ambil 1 id terbesar di kolom id_pendaftaran, lalu ambil 5 karakter aja dari sebelah kanan
     $getMaxid = mysqli_query($conn, "SELECT MAX(RIGHT(id_pendaftaran, 5)) AS id FROM tb_pendaftaran");
     $getMaxidN = mysqli_query($conn, "SELECT MAX(RIGHT(id_nilai, 5)) AS id FROM tb_nilai");
     $d = mysqli_fetch_object($getMaxid);
@@ -11,7 +10,6 @@ if (isset($_POST['submit'])) {
     $generateId = 'P'.date('Y').sprintf("%05s", $d->id+1);
     $generateIdN = 'N'.date('Y').sprintf("%05s", $d->id+1);
     
-    // proses insert
     $insert = mysqli_query($conn, "INSERT INTO tb_pendaftaran VALUES(
         '".$generateId."',
         '".date('Y-m-d')."',
@@ -46,191 +44,114 @@ if (isset($_POST['submit'])) {
 }
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1">
-        <title>PPDB ONLINE</title>
-        <link rel="stylesheet" type ="text/css" href="css/daftar.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <!-- bagian box formulir -->
-        <section class= "box-formulir">
-        <h1>Formulir Pendaftaran Siswa Baru</h1>
-        <h2>Data Diri Calon Siswa </h2>
-        <!-- bagian form -->
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PPDB SMK 11Nya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="<?= $main_url ?>/css/daftar.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="title">Formulir Pendaftaran Siswa Baru</div>
+
         <form action="" method="post">
-            <div class="box">
-                <table border="0" class="table-form">
-                    <tr>
-                        <td>Tahun Ajaran</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="th_ajaran" class="input-control" value="2022/2023" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jurusan</td>
-                        <td>:</td>
-                        <td>
-                            <select class= "input-control" name="jurusan">
-                                <option value="">-------------  PILIH  -------------</option>
-                                <option value="Sastra Indonesia">Sastran Indonesia</option>
-                                <option value="Sastra Inggris">Sastran Inggris</option>
-                                <option value="Teknik Komputer & Jaringan">Teknik Komputer & Jaringan</option>
-                                <option value="Teknik Kendaraan Ringan">Teknik Kendaraan Ringan</option>
-                                <option value="Teknik Industri">Teknik Industri</option>
-                                <option value="Asisten Keperawatan">Asisten Keperawatan</option>
-                                <option value="Teknologi Laboratorium Medik">Teknologi Laboratorium Medik</option>
-                                <option value="Farmasi Klinis & Komunitas">Farmasi Klinis & Komunitas</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                <table border="0" class="table-form">
-                    <tr>
-                        <td>Nomor Induk Siswa Nasional</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="NISN" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Asal Sekolah</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="asal_sekolah" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nama Lengkap</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="nm_peserta" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tempat Lahir</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" name="tmp_lahir" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tanggal Lahir</td>
-                        <td>:</td>
-                        <td>
-                            <input type="date" name="tgl_lahir" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Jenis Kelamin</td>
-                        <td>:</td>
-                        <td>
-                            <input type="radio" name="jenis_kelamin" class="input-control" value ="Laki-laki"> Laki-laki &nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="jenis_kelamin" class="input-control" value ="Perempuan"> Perempuan
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>No. Telepon</td>
-                        <td>:</td>
-                        <td>
-                            <input type="number" name="no_hp" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Agama</td>
-                        <td>:</td>
-                        <td>
-                            <select class= "input-control" name="agama">
-                                <option value="">--------  PILIH  --------</option>
-                                <option value="Islam">Islam</option>
-                                <option value="Kristen">Kristen</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Budha">Budha</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="Khonghucu">Khonghucu</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nilai rata-rata raport</td>
-                        <td>:</td>
-                        <td>
-                            <input type="number" name="raport" class="input-control">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Alamat Lengkap</td>
-                        <td>:</td>
-                        <td>
-                            <textarea class="input-control" name ="alamat"></textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Sumber Informasi</td>
-                        <td>:</td>
-                        <td>
-                            <select class= "input-control" name="sumber_informasi">
-                                <option value="">Darimana Informasi PPDB didapatkan?</option>
-                                <option value="Alumni">Alumni</option>
-                                <option value="Siswa Aktiv">Siswa Aktiv</option>
-                                <option value="Guru/Karyawan">Guru/Karyawan</option>
-                                <option value="Brosur">Brosur</option>
-                                <option value="Spanduk">Spanduk</option>
-                                <option value="Surat_Kabar">Surat_Kabar</option>
-                                <option value="Radio">Radio</option>
-                                <option value="Internet">Internet</option>
-                                <option value="sosial_media">sosial_media</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
+            <div class="section-title">Isi Biodata Anda</div>
+
+            <!-- <div class="row"><i class="fa-solid fa-calendar-days"></i><input type="text" name="th_ajaran"
+                    value="2025/2026" readonly>
+            </div> -->
+            <div class="row">
+                <i class="fa-solid fa-book"></i>
+                <select name="jurusan" required>
+                    <option value="">Pilih Jurusan</option>
+                    <option value="Sastra Indonesia">Sastra Indonesia</option>
+                    <option value="Sastra Inggris">Sastra Inggris</option>
+                    <option value="Teknik Komputer & Jaringan">Teknik Komputer & Jaringan</option>
+                    <option value="Teknik Kendaraan Ringan">Teknik Kendaraan Ringan</option>
+                    <option value="Teknik Industri">Teknik Industri</option>
+                    <option value="Asisten Keperawatan">Asisten Keperawatan</option>
+                    <option value="Teknologi Laboratorium Medik">Teknologi Laboratorium Medik</option>
+                    <option value="Farmasi Klinis & Komunitas">Farmasi Klinis & Komunitas</option>
+                </select>
             </div>
-            <h2>Nilai Raport</h2>
-            <div class="box">
-                <table border="1" style="margin-left:auto;margin-right:auto" >
-                    <tr>
-                        <th width="200px">Mata Pelajaran</th>
-                        <th width="100px">Nilai</th>
-                    </tr>
-                    <tr>
-                        <td>Bahasa Indonesia</td>
-                        <td>
-                            <input type="number" name="BINDO">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Matematika</td>
-                        <td>
-                            <input type="number" name="MTK">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ilmu Pendidikan Alam</td>
-                        <td>
-                            <input type="number" name="IPA">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Bahasa Inggris</td>
-                        <td>
-                            <input type="number" name="BINGG">
-                        </td>
-                    </tr>
-                </table>
+
+            <div class="row"><i class="fa-solid fa-id-card"></i><input type="text" name="NISN"
+                    placeholder="Nomor Induk Siswa Nasional"></div>
+            <div class="row"><i class="fa-solid fa-school"></i><input type="text" name="asal_sekolah"
+                    placeholder="Asal Sekolah"></div>
+            <div class="row"><i class="fa-solid fa-user"></i><input type="text" name="nm_peserta"
+                    placeholder="Nama Lengkap"></div>
+            <div class="row"><i class="fa-solid fa-location-dot"></i><input type="text" name="tmp_lahir"
+                    placeholder="Tempat Lahir"></div>
+            <div class="row"><i class="fa-solid fa-cake-candles"></i><input type="date" name="tgl_lahir"></div>
+
+            <div class="row">
+                <i class="fa-solid fa-venus-mars"></i>
+                <select name="jenis_kelamin" required>
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                </select>
             </div>
-            <div class="box">
-                <table border="0" class="submit">
-                    <tr>
-                        <td>
-                            <input type="submit" name="submit" class="btn-daftar" value="Daftar Sekarang">
-                        </td>
-                    </tr>
-                </table>
-            </div>        
+
+            <div class="row"><i class="fa-solid fa-phone"></i><input type="number" name="no_hp"
+                    placeholder="No. Telepon"></div>
+
+            <div class="row">
+                <i class="fa-solid fa-praying-hands"></i>
+                <select name="agama" required>
+                    <option value="">Pilih Agama</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Kristen">Kristen</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Budha">Budha</option>
+                    <option value="Katolik">Katolik</option>
+                    <option value="Khonghucu">Khonghucu</option>
+                </select>
+            </div>
+
+            <div class="row"><i class="fa-solid fa-chart-line"></i><input type="number" name="raport"
+                    placeholder="Nilai Rata-rata Raport"></div>
+
+            <div class="row row-alamat"><i class="fa-solid fa-map-location-dot"></i><textarea name="alamat"
+                    placeholder="Alamat Lengkap"></textarea></div>
+
+            <div class="row">
+                <i class="fa-solid fa-info"></i>
+                <select name="sumber_informasi">
+                    <option value="">Darimana Informasi PPDB didapatkan?</option>
+                    <option value="Alumni">Alumni</option>
+                    <option value="Siswa Aktiv">Siswa Aktiv</option>
+                    <option value="Guru/Karyawan">Guru/Karyawan</option>
+                    <option value="Brosur">Brosur</option>
+                    <option value="Spanduk">Spanduk</option>
+                    <option value="Surat_Kabar">Surat Kabar</option>
+                    <option value="Radio">Radio</option>
+                    <option value="Internet">Internet</option>
+                    <option value="Sosial Media">Sosial Media</option>
+                </select>
+            </div>
+
+            <div class="section-title"><i class="fa-solid fa-clipboard-list"></i> Nilai Ujian Nasional</div>
+
+            <div class="row"><i class="fa-solid fa-pen-nib"></i><input type="number" name="BINDO"
+                    placeholder="Bahasa Indonesia"></div>
+            <div class="row"><i class="fa-solid fa-calculator"></i><input type="number" name="MTK"
+                    placeholder="Matematika"></div>
+            <div class="row"><i class="fa-solid fa-flask"></i><input type="number" name="IPA"
+                    placeholder="Ilmu Pengetahuan Alam"></div>
+            <div class="row"><i class="fa-solid fa-language"></i><input type="number" name="BINGG"
+                    placeholder="Bahasa Inggris"></div>
+
+            <div class="row button">
+                <input type="submit" name="submit" value="Daftar Sekarang">
+            </div>
         </form>
-        </section>
-    </body>
+    </div>
+</body>
+
 </html>

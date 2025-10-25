@@ -1,0 +1,528 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica", sans-serif;
+}
+.header {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url(img/sekolah.png);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+nav {
+  display: flex;
+  padding: 2% 6%;
+  justify-content: space-between;
+  align-items: center;
+}
+nav img {
+  width: 150px;
+}
+.nav-links {
+  flex: 1;
+  text-align: right;
+}
+.nav-links ul li {
+  list-style: none;
+  display: inline-block;
+  padding: 8px 12px;
+  position: relative;
+}
+.nav-links ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+}
+.nav-links ul li::after {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #0d2ba3;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+.nav-links ul li:hover::after {
+  width: 100%;
+}
+.text-box {
+  width: 90%;
+  color: rgb(255, 255, 255);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.hero-button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.hero-button a {
+  display: inline-block;
+  background: #0d2ba3;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 10px 30px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(13, 43, 163, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-button a:hover {
+  background: #081a70;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(8, 26, 112, 0.4);
+}
+
+.text-box h1 {
+  font-size: 55px;
+}
+.text-box p {
+  margin: 10px 0 40px;
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 1px #000;
+}
+/* .hero-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: rgb(255, 251, 251);
+  border: 5px solid rgb(255, 255, 255);
+  padding: 12px 34px;
+  font-size: 16px;
+  background: transparent;
+  position: relative;
+  cursor: pointer;
+}
+.hero-btn:hover {
+  border: 1px solid #0d2ba3;
+  background: #0d2ba3;
+  transition: 1s;
+} */
+
+/* === Tombol Umum (dipakai di hero dan CTA) === */
+
+/* === Tombol Hero dan CTA === */
+.button {
+  text-align: center;
+  /* margin-top: 25px; */
+  background: none; /* pastikan tidak ada warna biru di container */
+}
+
+.hero-btn {
+  display: inline-block;
+  background: #0d2ba3;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 12px 40px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(13, 43, 163, 0.3);
+  transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+  background: #081a70;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(8, 26, 112, 0.4);
+}
+
+.button a,
+.hero-btn {
+  display: inline-block; /* bukan block penuh */
+  padding: 12px 40px; /* atur lebar tombol */
+  background: #0d2ba3;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(13, 43, 163, 0.3);
+  transition: all 0.3s ease;
+}
+
+.button a:hover,
+.hero-btn:hover {
+  background: #081a70;
+  box-shadow: 0 6px 14px rgba(8, 26, 112, 0.4);
+  transform: translateY(-2px);
+}
+
+.button a,
+.hero-btn {
+  display: inline-block;
+  padding: 12px 40px;
+  background: #0d2ba3;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(13, 43, 163, 0.3);
+  transition: all 0.3s ease;
+}
+
+.button a:hover,
+.hero-btn:hover {
+  background: #081a70;
+  box-shadow: 0 6px 14px rgba(8, 26, 112, 0.4);
+  transform: translateY(-2px);
+}
+
+.button a,
+.hero-btn {
+  transition: all 0.25s ease-in-out;
+}
+
+.row {
+  /* margin-top: 15px;
+  position: relative; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* position: relative; */
+}
+
+.button a {
+  width: auto;
+  padding: 12px;
+  background: #0d2ba3;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button a:hover {
+  background: #060f91;
+}
+
+nav .fa {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .text-box h1 {
+    font-size: 20px;
+  }
+  .nav-links ul li {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    background: #0d2ba3;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: -200px;
+    text-align: left;
+    z-index: 2;
+    transition: 1s;
+  }
+  nav .fa {
+    display: block;
+    color: #fff;
+    margin: 10px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+  .nav-links ul {
+    padding: 30px;
+  }
+}
+
+/*----- Course -----*/
+.course {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+}
+.course p {
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 14px;
+}
+.row {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+}
+.course-col {
+  flex-basis: 31%;
+  background: #0d2ba3;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+h3 {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0;
+  color: #fff;
+}
+.course-col p {
+  color: #fff;
+}
+.course-col:hover {
+  box-shadow: 0 0 20px 0px #1337c8;
+}
+@media (max-width: 700px) {
+  .row {
+    flex-direction: column;
+  }
+}
+
+/*----- campus -----*/
+
+.campus {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+.campus p {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 20px;
+}
+.campus-col {
+  flex-basis: 32%;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
+}
+.campus-col img {
+  width: 100%;
+  display: block;
+}
+.layer {
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 0.5s;
+}
+.layer:hover {
+  background: #0d2ba3;
+}
+.layer h3 {
+  width: 100%;
+  font-weight: 500;
+  color: #fff;
+  font-size: 26px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  opacity: 0;
+  transition: 1s;
+}
+.layer:hover h3 {
+  bottom: 49%;
+  opacity: 1;
+}
+
+/*------ facilities -----*/
+
+.facilities {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+.facilities p {
+  margin-top: 20px;
+}
+.facilities-col {
+  flex-basis: 31%;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  text-align: left;
+}
+.facilities-col img {
+  width: 100%;
+  border-radius: 10px;
+}
+.facilities-col p {
+  padding: 0;
+  color: #000;
+}
+.facilities-col h3 {
+  margin-top: 16px;
+  margin-bottom: 15px;
+  text-align: left;
+  color: #000;
+}
+
+/*----- testimonials -----*/
+
+.testimonials {
+  width: 80%;
+  margin: auto;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.testimonials h1 {
+  font-size: 36px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.testimonials p {
+  color: #000000;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 0 14px 40px 14px;
+}
+
+/* Barisan testimoni (seperti .row di course) */
+.testimonials-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap; /* Supaya rapi di layar kecil */
+  gap: 30px; /* jarak antar kotak */
+}
+
+/* Setiap kolom testimonial */
+.testimonials-col {
+  flex-basis: 31%;
+  background: #8399f0;
+  border-radius: 10px;
+  padding: 25px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px; /* jarak antara foto dan teks */
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* Gambar profil */
+.testimonials-col img {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Konten teks di dalam testimoni */
+.testimonials-text {
+  text-align: left;
+}
+
+.testimonials-text p {
+  color: #000;
+  font-size: 14px;
+  /* margin-bottom: 3px; */
+}
+
+.testimonials-text h3 {
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Efek hover ringan */
+.testimonials-col:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px 0px #1337c8;
+}
+
+/* Responsif */
+@media (max-width: 900px) {
+  .testimonials-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .testimonials-col {
+    flex-basis: 100%;
+  }
+}
+
+.cta {
+  margin: 100px auto;
+  width: 80%;
+  background-image: url(img/banner2.jpg);
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  text-align: center;
+  padding: 100px 0;
+}
+.cta h1 {
+  color: #fff;
+  margin-bottom: 40px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.cta a {
+  color: #fff;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+
+@media (max-width: 700px) {
+  .cta h1 {
+    font-size: 20px;
+  }
+}
+
+/*----- footer -----*/
+
+.footer-custom {
+  background-color: #f8f9fa; /* setara dengan bg-light */
+  padding: 1.5rem 0; /* setara dengan py-4 */
+  border-top: 1px solid #dee2e6; /* setara dengan border Bootstrap */
+  margin-top: auto; /* setara dengan mt-auto */
+}
+
+.footer-container {
+  width: 100%;
+  padding: 0 1.5rem; /* setara dengan px-4 */
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* setara dengan .small */
+}
+
+.footer-text {
+  color: #6c757d;
+  font-size: 0.875rem; /* setara dengan text-muted */
+}

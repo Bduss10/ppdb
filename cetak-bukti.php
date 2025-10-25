@@ -4,30 +4,46 @@ $peserta = mysqli_query($conn, "SELECT * FROM tb_pendaftaran WHERE id_pendaftara
 $p = mysqli_fetch_object($peserta);
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name ="viewport" content="width=device-width, initial-scale=1">
-        <title>PPDB ONLINE</title>
-        <link rel="stylesheet" type ="text/css" href="css/cetak.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bukti Pendaftaran | PPDB SMK 11Nya</title>
+    <link rel="stylesheet" type="text/css" href="<?= $main_url ?>css/cetak.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Quicksand:wght@500&display=swap"
+        rel="stylesheet">
     <script>
-        window.print();
+    window.print();
     </script>
-    </head>
-    <body>
-       <div class="box">
-       <center><h1>Bukti Pendaftaran</h1></center>
-       <table class="table-data" border="0" >
+</head>
+
+<body>
+    <div class="box">
+        <!-- Kop Sekolah -->
+        <div class="kop-sekolah">
+            <img src="img/logo.png" alt="Logo Sekolah" class="logo">
+            <div class="kop-teks">
+                <h2>SMK 11 Nya</h2>
+                <p>Jl. mu berat.. seumur hidup..</p>
+                <p>Telp. 0840-4040-4040</p>
+                <p>Email: smkn11nya@gmail.com</p>
+            </div>
+        </div>
+        <hr class="garis-kop">
+
+
+
+        <!-- Judul -->
+        <h1 class="judul">BUKTI PENDAFTARAN</h1>
+
+        <!-- Data Peserta -->
+        <table class="table-data">
             <tr>
                 <td>Kode Pendaftaran</td>
                 <td>:</td>
                 <td><?php echo $p->id_pendaftaran ?></td>
-            </tr>
-            <tr>
-                <td>Tahun Ajaran</td>
-                <td>:</td>
-                <td><?php echo $p->th_ajaran ?></td>
             </tr>
             <tr>
                 <td>Jurusan</td>
@@ -50,9 +66,9 @@ $p = mysqli_fetch_object($peserta);
                 <td><?php echo $p->nm_peserta ?></td>
             </tr>
             <tr>
-                <td>Tempat,Tanggal Lahir</td>
+                <td>Tempat, Tanggal Lahir</td>
                 <td>:</td>
-                <td><?php echo $p->tmp_lahir.','.$p->tgl_lahir ?></td>
+                <td><?php echo $p->tmp_lahir . ', ' . $p->tgl_lahir ?></td>
             </tr>
             <tr>
                 <td>Jenis Kelamin</td>
@@ -70,7 +86,7 @@ $p = mysqli_fetch_object($peserta);
                 <td><?php echo $p->agama ?></td>
             </tr>
             <tr>
-                <td>Nilai rata-rata raport</td>
+                <td>Nilai Rata-rata Raport</td>
                 <td>:</td>
                 <td><?php echo $p->raport ?></td>
             </tr>
@@ -79,7 +95,16 @@ $p = mysqli_fetch_object($peserta);
                 <td>:</td>
                 <td><?php echo $p->alamat ?></td>
             </tr>
-       </table>
-       </div>
-    </body>
+        </table>
+
+        <!-- Tanda Tangan -->
+        <div class="ttd">
+            <p>Bekasi, <?php echo date('d F Y'); ?></p>
+            <p>Panitia PPDB SMKN 11</p>
+            <br><br><br>
+            <p><strong>(________________________)</strong></p>
+        </div>
+    </div>
+</body>
+
 </html>

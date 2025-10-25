@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f7f9fc;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  padding: 30px 40px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #0d2ba3;
+  margin-bottom: 25px;
+  text-align: center;
+  border-bottom: 3px solid #457b9d;
+  padding-bottom: 10px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 25px;
+  font-size: 15px;
+}
+
+.info-grid div {
+  background: #f1f5fb;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.info-grid div span {
+  font-weight: 600;
+  color: #0d2ba3;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.info-grid .alamat {
+  grid-column: span 2;
+}
+
+.nilai-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.nilai-table th {
+  background-color: #0d2ba3;
+  color: #fff;
+  padding: 12px;
+  font-weight: 500;
+}
+
+.nilai-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: #f8fafc;
+}
+
+.nilai-table tr:hover td {
+  background-color: #eaf2f8;
+}
+
+.footer-custom {
+  background-color: #f8f9fa; /* setara dengan bg-light */
+  padding: 1.5rem 0; /* setara dengan py-4 */
+  border-top: 1px solid #dee2e6; /* setara dengan border Bootstrap */
+  margin-top: auto; /* setara dengan mt-auto */
+}
+
+.footer-container {
+  width: 100%;
+  padding: 0 1.5rem; /* setara dengan px-4 */
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* setara dengan .small */
+}
+
+.footer-text {
+  color: #6c757d;
+  font-size: 0.875rem; /* setara dengan text-muted */
+}
