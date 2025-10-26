@@ -12,8 +12,8 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                         Daftar Peserta
                     </a>
-                    <a class="nav-link" href="<?= $main_url ?>index.php">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></i></div>
+                    <a class="nav-link" href="<?= $main_url ?>keluar.php">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
                         Keluar
                     </a>
                     <hr class="mb-0">

@@ -9,8 +9,8 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Ambil data admin yang login
-$username = $_SESSION['username'];
-$query = mysqli_query($conn, "SELECT * FROM tbadmin WHERE username='$username'");
+$id = $_SESSION['id'];
+$query = mysqli_query($conn, "SELECT * FROM tbadmin WHERE id='$id'");
 $admin = mysqli_fetch_assoc($query);
 
 // Template
@@ -23,7 +23,6 @@ require_once "template/sidebar.php";
     <div id="layoutSidenav_content">
         <main class="container-fluid px-4 mt-4">
             <h1 class="mb-2">Selamat Datang, <?= htmlspecialchars($admin['username']); ?>!</h1>
-            <!-- <div class="container-fluid px-4"> -->
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item">Admin</li>
                 <li class="breadcrumb-item active">Profil Admin</li>
@@ -55,7 +54,6 @@ require_once "template/sidebar.php";
                     </div>
                 </div>
             </li>
-            <!-- </div> -->
         </main>
 
         <?php require_once "template/footer.php"; ?>
