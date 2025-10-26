@@ -423,7 +423,7 @@ h3 {
   padding: 25px 20px;
   display: flex;
   align-items: flex-start;
-  gap: 20px; /* jarak antara foto dan teks */
+  gap: 5px; /* jarak antara foto dan teks */
   box-sizing: border-box;
   transition: all 0.3s ease;
 }
@@ -444,6 +444,7 @@ h3 {
 .testimonials-text p {
   color: #000;
   font-size: 14px;
+  text-align: left;
   /* margin-bottom: 3px; */
 }
 
@@ -475,7 +476,7 @@ h3 {
 .cta {
   margin: 100px auto;
   width: 80%;
-  background-image: url(img/banner2.jpg);
+  background-image: url(img/cta.png);
   background-position: center;
   background-size: cover;
   border-radius: 10px;

@@ -4,6 +4,10 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Dashboard Admin</div>
+                    <a class="nav-link" href="<?= $main_url ?>admin.php">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                        Profil Admin
+                    </a>
                     <a class="nav-link" href="<?= $main_url ?>daftar_peserta.php">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                         Daftar Peserta

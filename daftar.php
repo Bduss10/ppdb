@@ -3,17 +3,40 @@ include 'koneksi.php';
 
 if (isset($_POST['submit'])) {
 
-    $getMaxid = mysqli_query($conn, "SELECT MAX(RIGHT(id_pendaftaran, 5)) AS id FROM tb_pendaftaran");
-    $getMaxidN = mysqli_query($conn, "SELECT MAX(RIGHT(id_nilai, 5)) AS id FROM tb_nilai");
-    $d = mysqli_fetch_object($getMaxid);
-    $n = mysqli_fetch_object($getMaxidN);
-    $generateId = 'P'.date('Y').sprintf("%05s", $d->id+1);
-    $generateIdN = 'N'.date('Y').sprintf("%05s", $d->id+1);
-    
+    // ====== BUAT ID PENDAFTARAN OTOMATIS ======
+    $getMaxid = mysqli_query($conn, "SELECT id_pendaftaran FROM tb_pendaftaran ORDER BY id_pendaftaran DESC LIMIT 1");
+    $d = mysqli_fetch_assoc($getMaxid);
+
+    if ($d && preg_match('/P(\d{4})(\d{5})/', $d['id_pendaftaran'], $match)) {
+        $tahunTerakhir = $match[1];
+        $angkaTerakhir = (int)$match[2];
+        $newNum = ($tahunTerakhir == date('Y')) ? $angkaTerakhir + 1 : 1;
+    } else {
+        $newNum = 1;
+    }
+
+    $generateId = 'P' . date('Y') . sprintf("%05s", $newNum);
+
+
+    // ====== BUAT ID NILAI OTOMATIS ======
+    $getMaxidN = mysqli_query($conn, "SELECT id_nilai FROM tb_nilai ORDER BY id_nilai DESC LIMIT 1");
+    $n = mysqli_fetch_assoc($getMaxidN);
+
+    if ($n && preg_match('/N(\d{4})(\d{5})/', $n['id_nilai'], $matchN)) {
+        $tahunTerakhirN = $matchN[1];
+        $angkaTerakhirN = (int)$matchN[2];
+        $newNumN = ($tahunTerakhirN == date('Y')) ? $angkaTerakhirN + 1 : 1;
+    } else {
+        $newNumN = 1;
+    }
+
+    $generateIdN = 'N' . date('Y') . sprintf("%05s", $newNumN);
+
+
+    // ====== SIMPAN DATA KE DATABASE ======
     $insert = mysqli_query($conn, "INSERT INTO tb_pendaftaran VALUES(
         '".$generateId."',
         '".date('Y-m-d')."',
-        '".$_POST['th_ajaran']."',
         '".$_POST['jurusan']."',
         '".$_POST['NISN']."',
         '".$_POST['asal_sekolah']."',
@@ -26,23 +49,24 @@ if (isset($_POST['submit'])) {
         '".$_POST['raport']."',
         '".$_POST['alamat']."',
         '".$_POST['sumber_informasi']."'
-        )");
+    )");
+
     $insertnilai = mysqli_query($conn, "INSERT INTO tb_nilai VALUES(
-            '".$generateIdN."',
-            '".$_POST['BINDO']."',
-            '".$_POST['MTK']."',
-            '".$_POST['IPA']."',
-            '".$_POST['BINGG']."'
-            )");
-    if ($insert){
+        '".$generateIdN."',
+        '".$_POST['BINDO']."',
+        '".$_POST['MTK']."',
+        '".$_POST['IPA']."',
+        '".$_POST['BINGG']."'
+    )");
+
+    if ($insert && $insertnilai){
         echo '<script>window.location="berhasil.php?id='.$generateId.'"</script>';
-    if ($insertnilai){
-        echo '<script>window.location="berhasil.php?id='.$generateIdN.'"</script>';}
-    }else{
-        echo 'huft'.mysqli_error($conn);
+    } else {
+        echo 'Error: '.mysqli_error($conn);
     }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -61,9 +85,6 @@ if (isset($_POST['submit'])) {
         <form action="" method="post">
             <div class="section-title">Isi Biodata Anda</div>
 
-            <!-- <div class="row"><i class="fa-solid fa-calendar-days"></i><input type="text" name="th_ajaran"
-                    value="2025/2026" readonly>
-            </div> -->
             <div class="row">
                 <i class="fa-solid fa-book"></i>
                 <select name="jurusan" required>
@@ -80,14 +101,14 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="row"><i class="fa-solid fa-id-card"></i><input type="text" name="NISN"
-                    placeholder="Nomor Induk Siswa Nasional"></div>
+                    placeholder="Nomor Induk Siswa Nasional" required></div>
             <div class="row"><i class="fa-solid fa-school"></i><input type="text" name="asal_sekolah"
-                    placeholder="Asal Sekolah"></div>
+                    placeholder="Asal Sekolah" required></div>
             <div class="row"><i class="fa-solid fa-user"></i><input type="text" name="nm_peserta"
-                    placeholder="Nama Lengkap"></div>
+                    placeholder="Nama Lengkap" required></div>
             <div class="row"><i class="fa-solid fa-location-dot"></i><input type="text" name="tmp_lahir"
-                    placeholder="Tempat Lahir"></div>
-            <div class="row"><i class="fa-solid fa-cake-candles"></i><input type="date" name="tgl_lahir"></div>
+                    placeholder="Tempat Lahir" required></div>
+            <div class="row"><i class="fa-solid fa-cake-candles"></i><input type="date" name="tgl_lahir" required></div>
 
             <div class="row">
                 <i class="fa-solid fa-venus-mars"></i>
@@ -99,7 +120,7 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="row"><i class="fa-solid fa-phone"></i><input type="number" name="no_hp"
-                    placeholder="No. Telepon"></div>
+                    placeholder="No. Telepon" required></div>
 
             <div class="row">
                 <i class="fa-solid fa-praying-hands"></i>
@@ -115,14 +136,14 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="row"><i class="fa-solid fa-chart-line"></i><input type="number" name="raport"
-                    placeholder="Nilai Rata-rata Raport"></div>
+                    placeholder="Nilai Rata-rata Raport" required></div>
 
             <div class="row row-alamat"><i class="fa-solid fa-map-location-dot"></i><textarea name="alamat"
-                    placeholder="Alamat Lengkap"></textarea></div>
+                    placeholder="Alamat Lengkap" required></textarea></div>
 
             <div class="row">
                 <i class="fa-solid fa-info"></i>
-                <select name="sumber_informasi">
+                <select name="sumber_informasi" required>
                     <option value="">Darimana Informasi PPDB didapatkan?</option>
                     <option value="Alumni">Alumni</option>
                     <option value="Siswa Aktiv">Siswa Aktiv</option>
@@ -139,13 +160,13 @@ if (isset($_POST['submit'])) {
             <div class="section-title"><i class="fa-solid fa-clipboard-list"></i> Nilai Ujian Nasional</div>
 
             <div class="row"><i class="fa-solid fa-pen-nib"></i><input type="number" name="BINDO"
-                    placeholder="Bahasa Indonesia"></div>
+                    placeholder="Bahasa Indonesia" required></div>
             <div class="row"><i class="fa-solid fa-calculator"></i><input type="number" name="MTK"
-                    placeholder="Matematika"></div>
+                    placeholder="Matematika" required></div>
             <div class="row"><i class="fa-solid fa-flask"></i><input type="number" name="IPA"
-                    placeholder="Ilmu Pengetahuan Alam"></div>
+                    placeholder="Ilmu Pengetahuan Alam" required></div>
             <div class="row"><i class="fa-solid fa-language"></i><input type="number" name="BINGG"
-                    placeholder="Bahasa Inggris"></div>
+                    placeholder="Bahasa Inggris" required></div>
 
             <div class="row button">
                 <input type="submit" name="submit" value="Daftar Sekarang">
